@@ -82,6 +82,3 @@ Or buy/play my games!
 [Train Your Minibot](https://store.steampowered.com/app/713740/Train_Your_Minibot/) 
 
 [Boring Movies](https://store.steampowered.com/app/1792500/Boring_Movies/)
-
-### Credits
-Ported [VRisingDropRateModifier](https://github.com/KinetsuDEV/VRisingDropRateModifier)
