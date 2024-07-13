@@ -99,6 +99,4 @@ namespace CrimsonHunt.Hooks;
                 action.Invoke();  // Execute the action
             });
         }
-
-
     }
