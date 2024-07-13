@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 namespace = "skytech6"
 name = "CrimsonHunt"
 versionNumber = "0.1.0"
-description = "Modifies the item group drop rate, not the item quantity drop"
+description = "Create battle-pass like rewards for V Blood hunting"
 websiteUrl = "https://github.com/CrimsonMods/CrimsonHunt/"
 containsNsfwContent = false
 
