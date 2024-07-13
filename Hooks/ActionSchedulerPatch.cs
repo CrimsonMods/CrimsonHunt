@@ -13,7 +13,7 @@ namespace CrimsonHunt.Hooks;
 
         public static int CurrentFrameCount = 0;
         public static ConcurrentQueue<Action> actionsToExecuteOnMainThread = new ConcurrentQueue<Action>();
-        public static List<Timer> activeTimers = new List<Timer>[];
+        public static List<Timer> activeTimers;
 
         [HarmonyPatch(typeof(RandomizedSpawnChainUpdateSystem), nameof(RandomizedSpawnChainUpdateSystem.OnUpdate))]
         [HarmonyPostfix]
