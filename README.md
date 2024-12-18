@@ -12,6 +12,7 @@ There is even leaderboard functionality for rankings. As well you can create Hun
 
 ## Installation
 * Install [BepInEx](https://v-rising.thunderstore.io/package/BepInEx/BepInExPack_V_Rising/)
+* Install [VCF](https://thunderstore.io/c/v-rising/p/deca/VampireCommandFramework/)
 * Extract _CrimsonHunt.dll_ into _(VRising server folder)/BepInEx/plugins_
 
 ## Configurable Values
