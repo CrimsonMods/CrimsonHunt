@@ -1,5 +1,4 @@
-﻿using Bloodstone.API;
-using Il2CppInterop.Runtime;
+﻿using Il2CppInterop.Runtime;
 using Unity.Collections;
 using Unity.Entities;
 
@@ -19,7 +18,7 @@ public static class Il2cppService
             Options = options
         };
 
-        var query = VWorld.Server.EntityManager.CreateEntityQuery(queryDesc);
+        var query = Core.EntityManager.CreateEntityQuery(queryDesc);
         var entities = query.ToEntityArray(Allocator.Temp);
 
         return entities;
@@ -38,7 +37,7 @@ public static class Il2cppService
             Options = options
         };
 
-        var query = VWorld.Server.EntityManager.CreateEntityQuery(queryDesc);
+        var query = Core.EntityManager.CreateEntityQuery(queryDesc);
         var entities = query.ToEntityArray(Allocator.Temp);
 
         return entities;
@@ -58,7 +57,7 @@ public static class Il2cppService
             Options = options
         };
 
-        var query = VWorld.Server.EntityManager.CreateEntityQuery(queryDesc);
+        var query = Core.EntityManager.CreateEntityQuery(queryDesc);
         var entities = query.ToEntityArray(Allocator.Temp);
 
         return entities;

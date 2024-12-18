@@ -1,11 +1,6 @@
 ﻿using CrimsonHunt.Structs;
-using Bloodstone.API;
 using ProjectM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using VampireCommandFramework;
 
 namespace CrimsonHunt.Commands;
@@ -37,6 +32,6 @@ internal class ActivateDeactivate
             _message.Append("</color>.");
         }
 
-        ServerChatUtils.SendSystemMessageToAllClients(VWorld.Server.EntityManager, _message.ToString());
+        ServerChatUtils.SendSystemMessageToAllClients(Core.EntityManager, _message.ToString());
     }
 }

@@ -1,50 +1,33 @@
 ﻿using BepInEx;
-using BepInEx.Unity.IL2CPP;
-using HarmonyLib;
-using VampireCommandFramework;
-using Bloodstone.API;
 using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
 using CrimsonHunt.Structs;
-using CrimsonHunt.Hooks;
-using CrimsonHunt.Utils;
+using HarmonyLib;
+using System.Reflection;
+using VampireCommandFramework;
 
 namespace CrimsonHunt;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInDependency("gg.deca.VampireCommandFramework")]
-[BepInDependency("gg.deca.Bloodstone")]
-[Bloodstone.API.Reloadable]
-public class Plugin : BasePlugin, IRunOnInitialized
+public class Plugin : BasePlugin
 {
     private Harmony _harmony;
-    public static ManualLogSource LogInstance {  get; private set; }
+    public static Plugin Instance { get; private set; }
+    public static Harmony Harmony => Instance._harmony;
+    public static ManualLogSource LogInstance => Instance.Log;
     public static Settings Settings { get; private set; }
 
     public override void Load()
     {
-        LogInstance = Log;
+        Instance = this;
+
         Settings = new (Config);
         Settings.InitConfig();
         Database.InitDatabase("player_hunts");
 
-        if (!VWorld.IsServer) 
-        {
-            Log.LogWarning("This plugin is a server-only plugin.");
-        }
-
+        _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
         CommandRegistry.RegisterAll();
-        //Bloodstone.Hooks.GameFrame.OnUpdate += ActionScheduler.HandleHuntFrame;
-    }
-
-    public void OnGameInitialized()
-    {
-        if (VWorld.IsClient) return;
-
-        _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-        _harmony.PatchAll();
-
-        Core.InitializeAfterLoaded();
-        Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} is loaded!");
     }
 
     public override bool Unload()
@@ -52,7 +35,6 @@ public class Plugin : BasePlugin, IRunOnInitialized
         CommandRegistry.UnregisterAssembly();
         Config.Clear();
         _harmony?.UnpatchSelf();
-        Bloodstone.Hooks.GameFrame.OnUpdate -= ActionScheduler.HandleHuntFrame;
         return true;
     }
 }

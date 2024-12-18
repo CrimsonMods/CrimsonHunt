@@ -1,5 +1,4 @@
-﻿using Bloodstone.API;
-using ProjectM;
+﻿using ProjectM;
 using Stunlock.Core;
 using System.Collections.Generic;
 
@@ -37,7 +36,7 @@ internal class PrefabService
 
     public static string GetPrefabName(PrefabGUID hashCode)
     {
-        var s = VWorld.Server.GetExistingSystemManaged<PrefabCollectionSystem>();
+        var s = Core.Server.GetExistingSystemManaged<PrefabCollectionSystem>();
         string name = "Nonexistent";
         if (hashCode.GuidHash == 0)
         {

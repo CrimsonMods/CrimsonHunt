@@ -1,5 +1,4 @@
-﻿using Bloodstone.API;
-using CrimsonHunt.Structs;
+﻿using CrimsonHunt.Structs;
 using ProjectM;
 using VampireCommandFramework;
 
@@ -18,6 +17,6 @@ internal class Event
         var _mes = expBuff == 0 ? $"<color=#ffc905>{_player.Name}</color> has deactivated the <color=#ffc905>Hunt Event</color>!" :
             $"<color=#ffc905>{_player.Name}</color> activated an <color=#ffc905>Hunt Event</color>. EXP: <color=#ffc905>+{expBuff}%</color>";
         ctx.Reply($"Hunt Event {(expBuff == 0 ? "deactivated" : "activated")}!");
-        ServerChatUtils.SendSystemMessageToAllClients(VWorld.Server.EntityManager, _mes);
+        ServerChatUtils.SendSystemMessageToAllClients(Core.EntityManager, _mes);
     }
 }

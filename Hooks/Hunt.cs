@@ -1,5 +1,4 @@
-﻿using Bloodstone.API;
-using CrimsonHunt.Structs;
+﻿using CrimsonHunt.Structs;
 using HarmonyLib;
 using ProjectM;
 using Stunlock.Core;
@@ -24,7 +23,7 @@ internal class Hunt
             Entity _bossEntity = GetVBlood(__instance, _event);
             Plugin.LogInstance.LogMessage("VBloodSystem.OnUpdate");
 
-            if (!VWorld.Server.EntityManager.TryGetComponentData<PlayerCharacter>(_event.Target, out var _data) ||
+            if (!Core.EntityManager.TryGetComponentData<PlayerCharacter>(_event.Target, out var _data) ||
                 _bossId.ToString() == "CHAR_Vermin_DireRat_VBlood" || _bossEntity == Entity.Null) continue;
 
             Player _player = new(_data.UserEntity);
@@ -60,7 +59,7 @@ internal class Hunt
         Entity _bossEntity = Entity.Null;
         foreach (var _entity in _entities)
         {
-            if (!VWorld.Server.EntityManager.TryGetComponentData<PrefabGUID>(_entity, out var _prefabGUID)) continue;
+            if (!Core.EntityManager.TryGetComponentData<PrefabGUID>(_entity, out var _prefabGUID)) continue;
             if (_prefabGUID.GuidHash == _event.Source.GuidHash)
             {
                 _bossEntity = _entity;

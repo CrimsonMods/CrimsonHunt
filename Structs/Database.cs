@@ -1,7 +1,4 @@
-﻿using Bloodstone.API;
-using Bloody.Core;
-using Bloody.Core.API.v1;
-using CrimsonHunt.Utils;
+﻿using CrimsonHunt.Utils;
 using ProjectM;
 using ProjectM.Network;
 using Stunlock.Core;
@@ -115,7 +112,7 @@ public class Database
         CheckForItemRewards(player, _curLevel, _prestige);
         AddPrestigeBuff(player, _stats, _prestige, _curLevel);
 
-        ServerChatUtils.SendSystemMessageToClient(VWorld.Server.EntityManager, player.User.Read<User>(),
+        ServerChatUtils.SendSystemMessageToClient(Core.EntityManager, player.User.Read<User>(),
             $"Hunt Score [Lvl: <color=#ffc905>{_prestige.Level}</color> ~ (<color=#ffc905>{_stats.Exp.ToString("0.##", CultureInfo.InvariantCulture)}</color>/<color=#ffc905>{_prestige.ExpNeeded}</color>)]");
         }
 
@@ -132,8 +129,8 @@ public class Database
             if (level.HuntReward.ItemHash != 0)
             {
                 PrefabGUID reward = new PrefabGUID(level.HuntReward.ItemHash);
-                UserSystem.TryAddUserInventoryItem(player.Character, reward, level.HuntReward.ItemQuantity);
-                ServerChatUtils.SendSystemMessageToClient(VWorld.Server.EntityManager, player.User.Read<User>(),
+                PlayerService.TryAddUserInventoryItem(player.Character, reward, level.HuntReward.ItemQuantity);
+                ServerChatUtils.SendSystemMessageToClient(Core.EntityManager, player.User.Read<User>(),
                      $"Hunt Level [Lvl: <color=#ffc905>{level.Level}</color> ~ Reward: (<color=#ffc905>{level.HuntReward.ItemQuantity} {reward.LookupName()}</color>");
             }
         }
@@ -143,7 +140,7 @@ public class Database
     {
         if (prestige.Level > curLevel)
         {
-            var _manager = VWorld.Server.EntityManager;
+            var _manager = Core.EntityManager;
 
             if (!BuffUtility.HasBuff(_manager, player.Character, new PrefabGUID(-1133938228)))
                 PlayerService.BuffPlayer(player.Character, player.User, new PrefabGUID(-1133938228), 2, false);

@@ -5,11 +5,14 @@ Give players rewards for hunting down V Bloods! It can be items or even buffs!
 
 There is even leaderboard functionality for rankings. As well you can create Hunt Score XP Bonus Events during which players receive extra points.
 
+### Planned Post-1.1 Update:
+- [CrimsonSQL](https://thunderstore.io/c/v-rising/p/skytech6/CrimsonSQL/) Integration (Share leaderboards across your servers)
+- [JSONRising](https://thunderstore.io/c/v-rising/p/skytech6/JSONRising/) Support
+- Messages.json Feature (some of my other mods have this, lets you build the outputs with optional runtime parameters)
+
 ## Installation
 * Install [BepInEx](https://v-rising.thunderstore.io/package/BepInEx/BepInExPack_V_Rising/)
-* Install [Bloodstone](https://github.com/decaprime/Bloodstone/releases/tag/v0.2.1)
-* Install [Bloody.Core](https://thunderstore.io/c/v-rising/p/Trodi/BloodyCore/)
-* Extract _CrimsonHunt_ into _(VRising server folder)/BepInEx/plugins_
+* Extract _CrimsonHunt.dll_ into _(VRising server folder)/BepInEx/plugins_
 
 ## Configurable Values
 ```ini
@@ -71,14 +74,24 @@ Here is an example of the hunt_levels.json file that is generated, showing both 
   }
 ]
 ```
+
+## Commands
+CrimsonHunt is up for a large update after 1.0. 
+
+For now please use `.help CrimsonHunt` to learn about the available commands.
+
 ## Support
 
 Want to support my V Rising Mod development? 
 
-Donations Accepted with [Ko-Fi](https://ko-fi.com/skytech6)
+Donations Accepted
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/skytech6)
 
 Or buy/play my games! 
 
 [Train Your Minibot](https://store.steampowered.com/app/713740/Train_Your_Minibot/) 
 
-[Boring Movies](https://store.steampowered.com/app/1792500/Boring_Movies/)
+[Boring Movies](https://store.steampowered.com/app/1792500/Boring_Movies/) **Free to Play!**
+
+**If you are looking to hire someone to make a mod for any Unity game reach out to me on Discord! (skytech6)**

@@ -1,6 +1,4 @@
-﻿using Bloodstone.API;
-using Bloody.Core;
-using CrimsonHunt.Structs;
+﻿using CrimsonHunt.Structs;
 using CrimsonHunt.Utils;
 using ProjectM;
 using ProjectM.Network;
@@ -15,7 +13,7 @@ internal class ToggleEffectCmd
     [Command("mode", description: "Toggle crimson hunt effects.", adminOnly: false)]
     public static void ToggleHuntEffects(ChatCommandContext ctx)
     {
-        var _manager = VWorld.Server.EntityManager;
+        var _manager = Core.EntityManager;
         Player _player = new(ctx.Event.SenderUserEntity);
         var _exp = Database.Data().GetExp(_player);
         var _prestige = Database.GetPrestige(_exp);

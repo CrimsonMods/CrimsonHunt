@@ -1,15 +1,12 @@
 ﻿using CrimsonHunt.Structs;
-using Bloodstone.API;
 using ProjectM;
 using ProjectM.Network;
 using ProjectM.Shared;
 using Stunlock.Core;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
-using Bloody.Core;
 
 namespace CrimsonHunt.Utils;
 
@@ -91,7 +88,7 @@ internal class PlayerService
 
     public static User GetUserComponente(Entity userEntity)
     {
-        return VWorld.Server.EntityManager.GetComponentData<User>(userEntity);
+        return Core.EntityManager.GetComponentData<User>(userEntity);
     }
 
     public static bool BuffPlayer(
@@ -108,7 +105,7 @@ internal class PlayerService
         new PrefabGUID(1068709119),
         new PrefabGUID(-1161197991)
       };
-        DebugEventsSystem _des = VWorld.Server.GetExistingSystemManaged<DebugEventsSystem>();
+        DebugEventsSystem _des = Core.Server.GetExistingSystemManaged<DebugEventsSystem>();
         ApplyBuffDebugEvent _adbe = new()
         {
             BuffPrefabGUID = buff
@@ -118,9 +115,9 @@ internal class PlayerService
             User = user,
             Character = character
         };
-        if (BuffUtility.TryGetBuff(VWorld.Server.EntityManager, character, buff, out var _entity)) return false;
+        if (BuffUtility.TryGetBuff(Core.EntityManager, character, buff, out var _entity)) return false;
         _des.ApplyBuff(_from, _adbe);
-        if (!BuffUtility.TryGetBuff(VWorld.Server.EntityManager, character, buff, out _entity)) return false;
+        if (!BuffUtility.TryGetBuff(Core.EntityManager, character, buff, out _entity)) return false;
         if (_prefabGuidList.Contains(buff))
         {
             if (_entity.Has<CreateGameplayEventsOnSpawn>())
@@ -164,7 +161,12 @@ internal class PlayerService
 
     public static void UnbuffCharacter(Entity character, PrefabGUID buffGUID)
     {
-        if (!BuffUtility.TryGetBuff(VWorld.Server.EntityManager, character, buffGUID, out var _buffEntity)) return;
-        DestroyUtility.Destroy(VWorld.Server.EntityManager, _buffEntity, DestroyDebugReason.TryRemoveBuff);
+        if (!BuffUtility.TryGetBuff(Core.EntityManager, character, buffGUID, out var _buffEntity)) return;
+        DestroyUtility.Destroy(Core.EntityManager, _buffEntity, DestroyDebugReason.TryRemoveBuff);
+    }
+
+    public static AddItemResponse TryAddUserInventoryItem(Entity CharacterEntity, PrefabGUID itemGuid, int stacks)
+    {
+        return Core.ServerScriptMapper.GetServerGameManager().TryAddInventoryItem(CharacterEntity, itemGuid, stacks);
     }
 }
